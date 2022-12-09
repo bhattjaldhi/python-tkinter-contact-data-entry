@@ -162,6 +162,7 @@ class App(customtkinter.CTk):
 
         self.topLogin.mainloop()
 
+    # login user if username and password matches
     def btn_login_submit(self):
         username = self.entry_username.get()
         password = self.entry_password.get()
@@ -196,6 +197,7 @@ class App(customtkinter.CTk):
 
         self.text_login_error.set('Username or password is incorrect')
 
+    # list all records according to user logged in
     def list_records(self, contact=None):
         if contact != None:
             for contact in Contact.select().where((Contact.created_by == self.logged_in) | (Contact.email == self.logged_in)):
@@ -209,7 +211,6 @@ class App(customtkinter.CTk):
                     contact.first_name, contact.last_name, contact.email, contact.number, contact.created_by))
 
     # open toplevel window on click of Add button
-
     def btn_add_event(self):
         self.mode_edit = False
         self.btn_add_edit_event()
@@ -297,6 +298,7 @@ class App(customtkinter.CTk):
             "Contact"), text="Submit", command=self.btn_customer_submit_event)
         btn_customer_submit.grid(column=1, row=6, sticky=E, padx=5, pady=5)
 
+        # fill entries if it's in edit mode
         if self.mode_edit == True:
             focused_item = self.itemTree.focus()
             values = self.itemTree.item(focused_item)['values']
@@ -309,7 +311,6 @@ class App(customtkinter.CTk):
         self.top.mainloop()
 
     # handle delete record event
-
     def btn_delete_event(self):
         # delete record from the table
         focused_item = self.itemTree.focus()
@@ -401,6 +402,7 @@ class App(customtkinter.CTk):
             self.text_customer_error.set('Please enter password')
             return False
 
+        # check if user is already exists in the database
         if self.mode_edit !=True and record.get("email") != "":
             contact = Contact.select().where(Contact.email == record.get("email"))
             if contact.exists():
