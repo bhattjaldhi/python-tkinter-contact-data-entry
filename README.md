@@ -14,6 +14,11 @@ pip install -r requirements.txt
 py app.py
 ```
 
+## Credentials
+- Click on login and enter,
+- Username: admin
+- Password: admin
+
 ## References:
 - https://github.com/TomSchimansky/CustomTkinter
 - http://docs.peewee-orm.com/en/latest/
