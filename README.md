@@ -15,7 +15,7 @@ py app.py
 ```
 
 ## Credentials
-- Click on login and enter,
+Click on login and enter,
 - Username: admin
 - Password: admin
 
